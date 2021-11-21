@@ -1,6 +1,11 @@
 import numpy as np
 
 nb_int = int(input("Entrer un nombre d'entiers à saisir :\n"))
+occ = int(-1)
+ask = """Que voulez-vous faire ?
+0 - Quitter le programme
+1 - Compter les occurences d'un entier\n"""
+occ_int: int
 
 while nb_int < 1:
     print("Valeur saisie incorrecte.")
@@ -17,3 +22,11 @@ for i in range(nb_int-1):
 
 print(array_int)
 print("L'entier le plus petit est", smallest)
+
+while occ != 0:
+    occ = int(input(ask))
+    if occ == 1:
+        occ_int = int(input("Entrer l'entier voulu :\n"))
+        print("Cette valeur apparaît {nb_occ} fois.".format(nb_occ=(array_int == occ_int).sum()))
+    else:
+        print("Valeur saisie incorrecte.")
