@@ -22,3 +22,15 @@ for con in consonnes:
 
 print("Il y a {nb_voy} voyelle(s) et {nb_con} consonne(s) dans votre saisie."
       .format(nb_voy=sum(voy_counts.values()), nb_con=sum(con_counts.values())))
+
+str_reversed = list(str_chain.removesuffix("."))  # Premier string sans . sous forme de list
+str_reversed.reverse()  # Inverse l'ordre des éléments de la list
+str_reversed = "".join(str_reversed)  # Transforme la list en string
+if str_reversed == str_chain.removesuffix("."):
+    print("Cette suite de caractères est un palindrome.")
+else:
+    print("Cette suite de caractères n'est pas un palindrome.")
+
+str_alpha = "".join(list([i for i in str_chain if i.isalpha()]))
+str_con = list(str_alpha.translate(str_alpha.maketrans("", "", voyelles)))
+print("Voici les consonnes que vous avez saisi :\n", str_con)
