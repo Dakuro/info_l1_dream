@@ -27,8 +27,10 @@ moy_notes = sum_notes / nb_notes
 
 print("La moyenne du groupe est :", round(moy_notes, 2))
 
-for i in range(nb_notes):
-    if array_notes[i] == 10:
+occ = int(0)
+while occ < nb_notes:
+    if array_notes[occ] == 10:
         occ_result += 1
+    occ += 1
 
 print("Il y a {nb_occ} étudiant(s) ayant eu 10 au DS.".format(nb_occ=occ_result))
