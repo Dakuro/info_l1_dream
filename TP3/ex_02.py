@@ -11,7 +11,7 @@ def afficher(t: Tab):
 
 
 def remplir_rndm(t: Tab, rndm_min: int, rndm_max: int):
-    for n in t:
+    for n in range(len(t)):
         t[n] = randint(rndm_min, rndm_max)
 
 
