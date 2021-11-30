@@ -65,8 +65,12 @@ def mini_index(t: Tab):
 
 # 10)
 def mini_index_b(t: Tab, i: int):
-    mini = minimum(t)
-    res_index = "Minimum à partir de {val_i} trouvé aux index suivants : ".format(val_i=i)
+    mini = t[i]
+    for n in range(i+1, len(t)):
+        if t[n] < mini:
+            mini = t[n]
+    res_index = """Minimum à partir d'index [{val_i}] est : {val_mini}
+Elle est trouvée aux index suivants : """.format(val_mini=mini, val_i=i)
     for n in range(i, len(t)):
         if t[n] == mini:
             res_index += str(n) + " "
