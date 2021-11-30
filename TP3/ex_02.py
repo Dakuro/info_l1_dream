@@ -68,18 +68,28 @@ def permutation(t: Tab, ind1: int, ind2: int):
     t[ind2] = perm_temp
 
 
-test_tab1: Tab = zeros(20, int)  # 3)
-test_tab2: Tab = zeros(20, int)  # 3)
-remplir_rndm(test_tab1, 0, 100)  # 3)
-remplir_rndm(test_tab2, 0, 100)  # 3)
-afficher(test_tab1)  # 3)
-afficher(test_tab2)  # 3)
-print("Le tableau est trié dans l'ordre croissant :", croissant(test_tab1))  # 7)
-print("Moyenne des valeurs :", moyenne(test_tab1))  # 7)
-occurence(test_tab1, 42)  # 7)
-print("Minimum du tableau :", minimum(test_tab1))  # 8)
-print("Minimum trouvé à l'index :", mini_index(test_tab1))  # 9)
-print("Minimum à partir de [{index}] trouvé à l'index :".format(index=12),
-      mini_index(test_tab1, 12))  # 10)
-permutation(test_tab1, 4, 5)
-afficher(test_tab1)
+# 12)
+def tri_croissant(t: Tab):
+    for n in range(len(t)):  # Pour chaque valeur du tableau
+        permutation(t, n, mini_index(t, n))  # On permute la valeur à l'index n
+        # Avec la plus petite valeur trouvée à partir de l'index n
+        # À n=0, on permute t[0] avec le minimum à partir de l'index 0
+        # À n=1, on permute t[1] avec le minimum à partir de l'index 1
+        # Et ainsi de suite...
+        # Par exemple, à n=15, la fonction mini_index() aura un nombre
+        # d'itérations égal à la taille du tableau moins 15
+
+
+tab1: Tab = zeros(20, int)  # 3)
+tab2: Tab = zeros(20, int)  # 3)
+remplir_rndm(tab1, 0, 100)  # 3)
+remplir_rndm(tab2, 0, 100)  # 3)
+afficher(tab1)  # 3)
+afficher(tab2)  # 3)
+print("Le tableau est trié dans l'ordre croissant :", croissant(tab1))  # 7)
+print("Moyenne des valeurs :", moyenne(tab1))  # 7)
+occurence(tab1, 42)  # 7)
+tri_croissant(tab1)
+tri_croissant(tab2)
+afficher(tab1)
+afficher(tab2)
