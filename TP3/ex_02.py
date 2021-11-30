@@ -45,36 +45,27 @@ def occurence(t: Tab, o: int):
 
 
 # 8)
-def minimum(t: Tab):
-    mini = t[0]
-    for n in range(1, len(t)):
+def minimum(t: Tab, min_index=0):
+    mini = t[min_index]
+    for n in range(min_index+1, len(t)):
         if t[n] < mini:
             mini = t[n]
     return mini
 
 
-# 9)
-def mini_index(t: Tab):
-    mini = minimum(t)
-    res_index = "Minimum trouvé aux index suivants : "
-    for n in range(len(t)):
+# 9) et 10)
+def mini_index(t: Tab, min_index=0):
+    mini = minimum(t, min_index)
+    for n in range(min_index, len(t)):
         if t[n] == mini:
-            res_index += str(n) + " "
-    return res_index
+            return n
 
 
-# 10)
-def mini_index_b(t: Tab, i: int):
-    mini = t[i]
-    for n in range(i+1, len(t)):
-        if t[n] < mini:
-            mini = t[n]
-    res_index = """Minimum à partir d'index [{val_i}] est : {val_mini}
-Elle est trouvée aux index suivants : """.format(val_mini=mini, val_i=i)
-    for n in range(i, len(t)):
-        if t[n] == mini:
-            res_index += str(n) + " "
-    return res_index
+# 11)
+def permutation(t: Tab, ind1: int, ind2: int):
+    perm_temp = t[ind1]
+    t[ind1] = t[ind2]
+    t[ind2] = perm_temp
 
 
 test_tab1: Tab = zeros(20, int)  # 3)
@@ -85,7 +76,10 @@ afficher(test_tab1)  # 3)
 afficher(test_tab2)  # 3)
 print("Le tableau est trié dans l'ordre croissant :", croissant(test_tab1))  # 7)
 print("Moyenne des valeurs :", moyenne(test_tab1))  # 7)
-occurence(test_tab1, randint(0, 100))  # 7)
+occurence(test_tab1, 42)  # 7)
 print("Minimum du tableau :", minimum(test_tab1))  # 8)
-print(mini_index(test_tab1))  # 9)
-print(mini_index_b(test_tab1, randint(0, 19)))  # 10)
+print("Minimum trouvé à l'index :", mini_index(test_tab1))  # 9)
+print("Minimum à partir de [{index}] trouvé à l'index :".format(index=12),
+      mini_index(test_tab1, 12))  # 10)
+permutation(test_tab1, 4, 5)
+afficher(test_tab1)
