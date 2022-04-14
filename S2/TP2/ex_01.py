@@ -155,3 +155,31 @@ nb_points: int = 36
 le_tab: TabPoints = zeros(nb_points, dtype=Point)
 remplir_tab(le_tab)
 dessiner_cercle(le_tab)
+
+
+def dessiner_droites(tab: TabPoints, coef: int):
+    plt.figure(figsize=(20, 20))
+    n: int = len(tab)
+    tab_x: TabReels = zeros(2, float)
+    tab_y: TabReels = zeros(2, float)
+    for i in range(n):
+        if i*coef <= n:
+            tab_x[0] = tab[i]
+            tab_y[0] = tab[i]
+            tab_x[1] = tab[i*coef]
+            tab_y[1] = tab[i*coef]
+        else:
+            tab_x[0] = tab[i]
+            tab_y[0] = tab[i]
+            tab_x[1] = tab[i*coef-n]
+            tab_y[i] = tab[i*coef-n]
+        plt.plot(tab_x, tab_y)
+
+    plt.show()
+
+
+# Test
+nb_points: int = 1256
+le_tab: TabPoints = zeros(nb_points, dtype=Point)
+remplir_tab(le_tab)
+dessiner_droites(le_tab, 2)
