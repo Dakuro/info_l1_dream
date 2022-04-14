@@ -130,3 +130,28 @@ def creer_courbes_couts_seuils(tab_prix):
 
 # Test
 creer_courbes_couts_seuils(tab_prix)
+
+
+def remplir_tab(tab: TabPoints):
+    n: int = len(tab)
+    a: float = 2.*pi/n
+    for i in range(n):
+        tab[i] = creer_point(cos(a*i), sin(a*i))
+
+
+def dessiner_cercle(tab: TabPoints):
+    n: int = len(tab)
+    tab_x: TabReels = zeros(n, float)
+    tab_y: TabReels = zeros(n, float)
+    for i in range(n):
+        tab_x[i] = tab[i].x
+        tab_y[i] = tab[i].y
+    plt.plot(tab_x, tab_y)
+    plt.show()
+
+
+# Test
+nb_points: int = 36
+le_tab: TabPoints = zeros(nb_points, dtype=Point)
+remplir_tab(le_tab)
+dessiner_cercle(le_tab)
