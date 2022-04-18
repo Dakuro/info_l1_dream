@@ -91,10 +91,7 @@ def creer_courbes_couts_seuils(tab_prix):
     # Recherche du MIN, du MAX, et de la moyenne des valeurs du tableau tab_prix
     cout_min: float = tab_prix[0]
     cout_max: float = tab_prix[0]
-    cout_moyen: float = 0.
-
-    # Somme des coûts pour le calcul du coût moyen
-    cout_sum: float = tab_prix[0]
+    cout_moyen: float = tab_prix[0]
 
     # TO-DO: CALCULER LE MAX, LE MIN ET LA MOYENNE
     for i in range(1, nb_villes):
@@ -102,8 +99,8 @@ def creer_courbes_couts_seuils(tab_prix):
             cout_max = tab_prix[i]
         elif tab_prix[i] < cout_min:
             cout_min = tab_prix[i]
-        cout_sum += tab_prix[i]
-    cout_moyen = cout_sum / nb_villes
+        cout_moyen += tab_prix[i]
+    cout_moyen /= nb_villes
 
     # Courbe de la ligne du coût max
     tab_max = zeros(nb_villes, float)
@@ -157,7 +154,7 @@ dessiner_cercle(le_tab)
 
 
 def dessiner_droites(tab: TabPoints, coef: int):
-    plt.figure(figsize=(20, 20))
+    plt.figure(figsize=(10, 10))
     n: int = len(tab)
 
     # Tableaux pour stocker les coordonnées des points Pi et Pi*coef
@@ -192,8 +189,9 @@ dessiner_droites(le_tab, 2)
 
 
 def dessiner_droites_colorees(tab: TabPoints, coef: int):
-    plt.figure(figsize=(20, 20))
+    plt.figure(figsize=(10, 10))
     n: int = len(tab)
+    blue: float = 0
 
     # Tableaux pour stocker les coordonnées des points Pi et Pi*coef
     tab_x: TabReels = zeros(2, float)
@@ -214,7 +212,7 @@ def dessiner_droites_colorees(tab: TabPoints, coef: int):
             tab_x[1] = tab[i * coef].x
             tab_y[1] = tab[i * coef].y
         # On trace une droite reliant les deux points du couple
-        plt.plot(tab_x, tab_y, color=(0, 0, 0))
+        plt.plot(tab_x, tab_y)
 
     plt.show()
 
