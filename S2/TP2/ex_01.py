@@ -222,9 +222,12 @@ def dessiner_droites_colorees(tab: TabPoints, coef: int):
             # i // (n // coef) correspond au nombre de fois où ce code a été exécuté
             # Quand i tend vers n, i // (n // coef) tend vers coef
             # Or, la valeur maximale de i est n - 1, donc on a au maximum i // (n // coef) = coef - 1
-            # Donc pour avoir blue = 1 à la dernière exécution de ce code, on doit avoir 1 / (coef - 1) * (coef - 1)
+            # Pour avoir blue = 1 à la dernière exécution de ce code, on doit avoir blue = 1 / (coef - 1) * (coef - 1)
             # C'est pour cette raison qu'on fait 1 / (coef - 1) et non 1 / coef
-            # Ainsi, les n // coef dernières droites tracées seront d'un bleu pur
+            # Ainsi, les n // coef premières droites tracées seront d'un noir pur
+            # Les n // coef dernières droites tracées seront d'un bleu pur
+            # Et on obtient une répartition de n // coef droites tracées pour chaque couleur
+            # Dans le cas où coef = 2, les deux couleurs sont alors un noir pur et un bleu pur
 
         # On trace une droite reliant les deux points du couple
         plt.plot(tab_x, tab_y, color=(0, 0, blue))
