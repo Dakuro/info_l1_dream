@@ -154,7 +154,7 @@ dessiner_cercle(le_tab)
 
 
 def dessiner_droites(tab: TabPoints, coef: int):
-    plt.figure(figsize=(10, 10))
+    plt.figure(figsize=(20, 20))
     n: int = len(tab)
 
     # Tableaux pour stocker les coordonnées des points Pi et Pi*coef
@@ -189,7 +189,7 @@ dessiner_droites(le_tab, 2)
 
 
 def dessiner_droites_colorees(tab: TabPoints, coef: int):
-    plt.figure(figsize=(10, 10))
+    plt.figure(figsize=(30, 30))
     n: int = len(tab)
     blue: float = 0
 
@@ -211,8 +211,23 @@ def dessiner_droites_colorees(tab: TabPoints, coef: int):
             tab_y[0] = tab[i].y
             tab_x[1] = tab[i * coef].x
             tab_y[1] = tab[i * coef].y
+
+        # Toutes les n // coef itérations, la valeur de blue augmente pour créer un dégradé
+        # n // coef est la partie entière de la division de n par coef
+        # Par exemple, pour n = 3000 et coef = 30, on a n // coef = 100
+        # Ce code est donc exécuté coef fois, car il y a coef couleurs différentes dans le dégradé
+        if i % (n // coef) == 0:
+            blue = 1 / (coef - 1) * (i // (n // coef))
+            # 1 / (coef - 1) est la valeur par laquelle blue est incrémentée à chaque exécution de ce code
+            # i // (n // coef) correspond au nombre de fois où ce code a été exécuté
+            # Quand i tend vers n, i // (n // coef) tend vers coef
+            # Or, la valeur maximale de i est n - 1, donc on a au maximum i // (n // coef) = coef - 1
+            # Donc pour avoir blue = 1 à la dernière exécution de ce code, on doit avoir 1 / (coef - 1) * (coef - 1)
+            # C'est pour cette raison qu'on fait 1 / (coef - 1) et non 1 / coef
+            # Ainsi, les n // coef dernières droites tracées seront d'un bleu pur
+
         # On trace une droite reliant les deux points du couple
-        plt.plot(tab_x, tab_y)
+        plt.plot(tab_x, tab_y, color=(0, 0, blue))
 
     plt.show()
 
